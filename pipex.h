@@ -6,7 +6,7 @@
 /*   By: qestefan <qestefan@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 14:22:48 by qestefan          #+#    #+#             */
-/*   Updated: 2022/01/21 21:33:58 by qestefan         ###   ########.fr       */
+/*   Updated: 2022/01/22 13:00:31 by qestefan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,16 @@
 
 #include "error.h"
 #include "libft/libft.h"
+
+typedef struct s_data
+{
+	int		fd[2];
+	pid_t	pid;
+	char	**cmd1;
+	char	**cmd2;
+	int		file_fd[2];
+
+}	t_data;
 
 void	ft_perror(char *str);
 
