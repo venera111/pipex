@@ -6,7 +6,7 @@
 /*   By: qestefan <qestefan@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 14:26:58 by qestefan          #+#    #+#             */
-/*   Updated: 2022/01/22 14:17:56 by qestefan         ###   ########.fr       */
+/*   Updated: 2022/01/22 17:09:25 by qestefan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,5 @@
 # define ARGV_ERROR "Not enough arguments\n"
 # define DUP2_ERROR "dup2() error\n"
 # define DUP2_PIPE "Couldn't write the pipe\n"
+# define PATH_ERROR "Missing PATH "
 #endif
