@@ -6,7 +6,7 @@
 #    By: qestefan <qestefan@student.21-school.ru    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/21 21:25:47 by qestefan          #+#    #+#              #
-#    Updated: 2022/01/24 12:16:30 by qestefan         ###   ########.fr        #
+#    Updated: 2022/01/24 12:40:06 by qestefan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,8 @@ AR = ar rc
 	$(CC) $(FLAGS) -c -I$(HEADER) -I$(LIB_HEADER) $< -o $(<:.c=.o)
 
 all: $(LIBFT) $(NAME_PROJECT)
+
+$(NAME): $(OBJS) $(HEADER)
 
 bonus : $(LIBFT) $(NAME_PROJECT)
 $(LIBFT):
