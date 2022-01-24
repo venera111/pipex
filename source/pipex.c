@@ -6,7 +6,7 @@
 /*   By: qestefan <qestefan@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 13:45:05 by qestefan          #+#    #+#             */
-/*   Updated: 2022/01/22 20:12:14 by qestefan         ###   ########.fr       */
+/*   Updated: 2022/01/24 12:20:09 by qestefan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ void	check_argv(int argc, t_data *data, char **argv)
 		data->cmd2 = ft_split(argv[3], ' ');
 		data->file1 = open(argv[1], O_RDONLY);
 		data->file2 = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0777);
-		// dprintf(2, "%d %d\n", data->file1, data->file2);
 		if (data->file1 == -1 || data->file2 == -1)
 			ft_perror(FILE_ERROR);
 	}
