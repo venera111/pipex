@@ -6,7 +6,7 @@
 /*   By: qestefan <qestefan@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 14:26:58 by qestefan          #+#    #+#             */
-/*   Updated: 2022/01/24 14:37:56 by qestefan         ###   ########.fr       */
+/*   Updated: 2022/01/24 15:51:18 by qestefan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 # define DUP2_PIPE "Couldn't write the pipe"
 # define FILE_ERR "Permission Denied"
 # define FILE_OR_DIR ":no such file or directory:"
-# define NO_PERM ": permission denied: "
 # define CLOSE_ERR "error occurred while reading"
 
 #endif

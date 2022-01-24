@@ -6,7 +6,7 @@
 /*   By: qestefan <qestefan@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 14:22:48 by qestefan          #+#    #+#             */
-/*   Updated: 2022/01/24 14:06:47 by qestefan         ###   ########.fr       */
+/*   Updated: 2022/01/24 18:33:36 by qestefan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,16 @@ typedef struct s_data
 	char	**cmd2;
 	int		file1;
 	int		file2;
+	int		i;
+	int		j;
+	char	**out;
+	char	*line;
+	char	*comm;
 
 }	t_data;
 
 void	ft_perror(char *str);
 void	handler_file(t_data *data, char **argv);
+void	ft_free(char **comm);
 
 #endif
