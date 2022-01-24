@@ -6,7 +6,7 @@
 /*   By: qestefan <qestefan@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 13:45:05 by qestefan          #+#    #+#             */
-/*   Updated: 2022/01/24 18:33:53 by qestefan         ###   ########.fr       */
+/*   Updated: 2022/01/24 20:49:04 by qestefan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,12 @@ void	child_process(t_data *data, char **envp, int *fd)
 {
 	char	*line;
 
-	close(fd[0]);
 	if (dup2(data->file1, 0) < 0)
 		ft_perror(DUP2_FILE);
 	if (dup2(fd[1], 1) < 0)
 		ft_perror(DUP2_PIPE);
-	close(fd[1]);
-	close(data->file1);
+	if (close(fd[0]) == -1 || close(fd[1]) == -1 || close(data->file1) == -1)
+		ft_perror(CLOSE_ERR);
 	line = pars_envp(envp, data->cmd1, data);
 	if (execve(line, data->cmd1, envp) == -1)
 		ft_perror("");
