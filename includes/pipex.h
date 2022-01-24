@@ -6,7 +6,7 @@
 /*   By: qestefan <qestefan@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 14:22:48 by qestefan          #+#    #+#             */
-/*   Updated: 2022/01/22 18:01:44 by qestefan         ###   ########.fr       */
+/*   Updated: 2022/01/24 12:16:06 by qestefan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <stdio.h>
-#include "error.h"
-#include "libft/libft.h"
+#include <error.h>
+#include <libft.h>
 
 typedef struct s_data
 {

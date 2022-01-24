@@ -6,52 +6,45 @@
 #    By: qestefan <qestefan@student.21-school.ru    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/21 21:25:47 by qestefan          #+#    #+#              #
-#    Updated: 2022/01/21 21:35:27 by qestefan         ###   ########.fr        #
+#    Updated: 2022/01/24 12:16:30 by qestefan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME 	= pipex.a
-PROG	= pipex
+FLAGS = -Wall -Wextra -Werror
 
-SRCS 	= pipex.c utils.c
-OBJS 	= ${SRCS:.c=.o}
-MAIN	= pipex.c
+NAME_PROJECT = pipex
+LIB_DIR = ./libft/
+LIB_NAME =	libft/libft.a
+LIB_HEADER = libft
+LIBFT = libft.a
+CC = gcc
+HEADER = includes
+OBJS = $(SRCS:.c=.o)
+DIR = ./source/
+SRCS = $(DIR)pipex.c $(DIR)utils.c
+AR = ar rc
 
-SRCS_B	= pipex_bonus.c utils.c utils_bonus.c
-OBJS_B	= ${SRCS_B:.c=.o}
-MAIN_B	= pipex_bonus.c
+.c.o:
+	$(CC) $(FLAGS) -c -I$(HEADER) -I$(LIB_HEADER) $< -o $(<:.c=.o)
 
-HEADER	= -I./includes/
+all: $(LIBFT) $(NAME_PROJECT)
 
-CC 		= gcc
-CFLAGS 	= -Wall -Wextra -Werror -g
-
-.c.o:		%.o : %.c
-					@gcc ${CFLAGS} ${HEADER} -c $< -o $(<:.c=.o)
-
-$(NAME):	${OBJS}
-					@make re -C ./libft
-					@cp libft/libft.a ./$(NAME)
-					@ar -rcs ${NAME} ${OBJS}
-					@$(CC) $(NAME) ${MAIN} -o ${PROG}
-
-all: 		${NAME}
-
-bonus:		${OBJS_B}
-					@make re -C ./libft
-					@cp libft/libft.a ./$(NAME)
-					@ar -rcs ${NAME} ${OBJS_B}
-					@$(CC) $(NAME) ${MAIN_B} -o ${PROG}
+bonus : $(LIBFT) $(NAME_PROJECT)
+$(LIBFT):
+		@$(MAKE) -C $(LIB_DIR)
+$(NAME_PROJECT): $(OBJS)
+		$(CC) $(FLAGS) -I$(HEADER) $(OBJS) -L. $(LIB_NAME) -o $(NAME_PROJECT)
 
 clean:
-					@make clean -C ./libft
-					@rm -f ${OBJS} ${OBJS_B}
+	make clean -C $(LIB_DIR)
+	rm -rf $(OBJS)
 
-fclean: 	clean
-					@make fclean -C ./libft
-					@rm -f $(NAME)
-					@rm -f ${PROG}
+fclean: clean
+	make fclean -C $(LIB_DIR)
+	rm -rf $(NAME_PROJECT)
+re: fclean all
 
-re:			fclean all
+norm:
+	norminette source/*.c includes/*.h
 
-.PHONY: all clean fclean re bonus party
+.PHONY: all clean fclean re code bonus norm
