@@ -6,19 +6,19 @@
 /*   By: qestefan <qestefan@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 14:22:48 by qestefan          #+#    #+#             */
-/*   Updated: 2022/01/24 12:16:06 by qestefan         ###   ########.fr       */
+/*   Updated: 2022/01/24 14:06:47 by qestefan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPEX_H
 # define PIPEX_H
 
-#include <stdlib.h>
-#include <fcntl.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <error.h>
-#include <libft.h>
+# include <stdlib.h>
+# include <fcntl.h>
+# include <unistd.h>
+# include <stdio.h>
+# include <error.h>
+# include <libft.h>
 
 typedef struct s_data
 {
@@ -31,5 +31,6 @@ typedef struct s_data
 }	t_data;
 
 void	ft_perror(char *str);
+void	handler_file(t_data *data, char **argv);
 
 #endif

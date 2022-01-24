@@ -6,13 +6,13 @@
 /*   By: qestefan <qestefan@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 13:45:05 by qestefan          #+#    #+#             */
-/*   Updated: 2022/01/24 12:20:09 by qestefan         ###   ########.fr       */
+/*   Updated: 2022/01/24 14:06:36 by qestefan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	pars_envp(char **envp, char	**cmd, int i, int k)
+void	pars_envp(char **envp, char	**cmd, int i, int j)
 {
 	char	**out;
 	char	*path;
@@ -24,15 +24,15 @@ void	pars_envp(char **envp, char	**cmd, int i, int k)
 		{
 			path = ft_strrchr(path, '=');
 			out = ft_split(path, ':');
-			while (out[k])
+			while (out[j])
 			{
 				i = 0;
-				out[k] = ft_strjoin(out[k], "/");
-				out[k] = ft_strjoin(out[k], cmd[0]);
-				execve(out[k], cmd, NULL);
-				k++;
+				out[j] = ft_strjoin(out[j], "/");
+				out[j] = ft_strjoin(out[j], cmd[0]);
+				execve(out[j], cmd, NULL);
+				j++;
 			}
-			ft_perror("Wrong command");
+			ft_perror("Wrong");
 		}
 		i++;
 	}
@@ -41,10 +41,10 @@ void	pars_envp(char **envp, char	**cmd, int i, int k)
 void	child_process(t_data *data, char **envp, int *fd)
 {
 	int	i;
-	int	k;
+	int	j;
 
 	i = 0;
-	k = 0;
+	j = 0;
 	close(fd[0]);
 	if (dup2(data->file1, 0) < 0)
 		ft_perror(DUP2_FILE);
@@ -52,16 +52,16 @@ void	child_process(t_data *data, char **envp, int *fd)
 		ft_perror(DUP2_PIPE);
 	close(fd[1]);
 	close(data->file1);
-	pars_envp(envp, data->cmd1, i, k);
+	pars_envp(envp, data->cmd1, i, j);
 }
 
 void	parent_process(t_data *data, char **envp, int *fd)
 {
 	int	i;
-	int	k;
+	int	j;
 
 	i = 0;
-	k = 0;
+	j = 0;
 	close(fd[1]);
 	if (dup2(fd[0], 0) < 0)
 		ft_perror(DUP2_PIPE);
@@ -69,7 +69,7 @@ void	parent_process(t_data *data, char **envp, int *fd)
 		ft_perror(DUP2_FILE);
 	close(fd[0]);
 	close(data->file2);
-	pars_envp(envp, data->cmd2, i, k);
+	pars_envp(envp, data->cmd2, i, j);
 }
 
 void	check_argv(int argc, t_data *data, char **argv)
@@ -78,14 +78,10 @@ void	check_argv(int argc, t_data *data, char **argv)
 	{
 		data->cmd1 = ft_split(argv[2], ' ');
 		data->cmd2 = ft_split(argv[3], ' ');
-		data->file1 = open(argv[1], O_RDONLY);
-		data->file2 = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0777);
-		if (data->file1 == -1 || data->file2 == -1)
-			ft_perror(FILE_ERROR);
+		handler_file(data, argv);
 	}
 	else
 		ft_perror(ARGC_ERROR);
-
 }
 
 int	main(int argc, char **argv, char **envp)
