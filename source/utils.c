@@ -6,7 +6,7 @@
 /*   By: qestefan <qestefan@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 14:20:35 by qestefan          #+#    #+#             */
-/*   Updated: 2022/01/24 13:57:36 by qestefan         ###   ########.fr       */
+/*   Updated: 2022/01/24 14:13:45 by qestefan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_perror(char *str)
 	exit(EXIT_FAILURE);
 }
 
-void	print_stdout_error(char *error, char *name)
+static void	print_stdout_error(char *error, char *name)
 {
 	write(STDERR_FILENO, error, ft_strlen(error));
 	write(STDERR_FILENO, name, ft_strlen(name));
@@ -46,7 +46,7 @@ void	handler_file(t_data *data, char **argv)
 	else if (access(argv[4], F_OK) != -1)
 		data->file2 = open(argv[4], O_WRONLY | O_TRUNC);
 	else
-		data->file2 = open(argv[4], O_WRONLY | O_CREAT, 0777);
+		data->file2 = open(argv[4], O_WRONLY | O_CREAT, 0644);
 	if (data->file2 == -1)
 		ft_perror(FILE_ERR);
 }

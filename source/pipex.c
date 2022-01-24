@@ -6,7 +6,7 @@
 /*   By: qestefan <qestefan@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 13:45:05 by qestefan          #+#    #+#             */
-/*   Updated: 2022/01/24 14:06:36 by qestefan         ###   ########.fr       */
+/*   Updated: 2022/01/24 14:33:35 by qestefan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void	pars_envp(char **envp, char	**cmd, int i, int j)
 			ft_perror("Wrong");
 		}
 		i++;
+		if (!envp[i])
+			ft_perror("");
 	}
 }
 
@@ -62,13 +64,12 @@ void	parent_process(t_data *data, char **envp, int *fd)
 
 	i = 0;
 	j = 0;
-	close(fd[1]);
 	if (dup2(fd[0], 0) < 0)
 		ft_perror(DUP2_PIPE);
 	if (dup2(data->file2, 1) < 0)
 		ft_perror(DUP2_FILE);
-	close(fd[0]);
-	close(data->file2);
+	if (close(fd[1]) == -1 || close(fd[0]) == -1 || close(data->file2) == -1)
+		ft_perror(CLOSE_ERR);
 	pars_envp(envp, data->cmd2, i, j);
 }
 

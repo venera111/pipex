@@ -6,7 +6,7 @@
 #    By: qestefan <qestefan@student.21-school.ru    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/21 21:25:47 by qestefan          #+#    #+#              #
-#    Updated: 2022/01/24 14:05:29 by qestefan         ###   ########.fr        #
+#    Updated: 2022/01/24 14:16:17 by qestefan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ LIB_NAME =	libft/libft.a
 LIB_HEADER = libft
 LIBFT = libft.a
 CC = gcc
-HEADER = includes
+HEADER = ./includes/
 OBJS = $(SRCS:.c=.o)
 DIR = ./source/
 SRCS = $(DIR)pipex.c $(DIR)utils.c
@@ -31,7 +31,7 @@ all: $(LIBFT) $(NAME_PROJECT)
 
 $(NAME): $(OBJS) $(HEADER)
 	$(MAKE) -C $(LIB_DIR)
-	$(CC) $(FLAGS) $(OBJS) $(LIB_NAME) -o $(NAME_PROJECT)
+	$(CC) $(FLAGS) $(OBJS) $(LIB_NAME) -I$(HEADER) -o $(NAME_PROJECT)
 
 bonus : $(LIBFT) $(NAME_PROJECT)
 $(LIBFT):
