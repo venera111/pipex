@@ -16,9 +16,12 @@ their parameters.
 Examples
 ```
 ./pipex infile "ls -l" "wc -l" outfile
-./pipex infile "grep a1" "wc -w" outfile
-< infile grep a1 | wc -w > outfile
 ```
+should be the same as "< infile ls -l | wc -l > outfile"
+```
+./pipex infile "grep a1" "wc -w" outfile
+```
+should be the same as "< infile grep a1 | wc -w > outfile"
 
 ### Resources
 Unix Processes in C: [CodeVault](https://www.youtube.com/playlist?list=PLfqABt5AS4FkW5mOn2Tn9ZZLLDwA3kZUY)
