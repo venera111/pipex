@@ -13,7 +13,7 @@ The execution of the pipex program should do the same as the next shell command:
 Just in case: file1 and file2 are file names, cmd1 and cmd2 are shell commands with
 their parameters.
 
-Examples
+### Examples
 ```
 ./pipex infile "ls -l" "wc -l" outfile
 ```
